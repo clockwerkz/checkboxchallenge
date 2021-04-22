@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #ddd;
+  background-color: #f5f5f5;
   font-family: 'Roboto', sans-serif;
   color: #333;
 }
@@ -29,6 +29,7 @@ body {
 
 .newsletters {
   background-color: #fdfdfd;
+  padding: 1rem 0;
   border-radius: 10px;
   width: 50%;
   margin: 0 auto;
@@ -42,18 +43,86 @@ body {
   text-align: center;
 }
 
+.choices {
+  list-style: none;
+}
+
 .choice {
   display: -ms-grid;
   display: grid;
+  margin: 0.5rem 0;
   -ms-grid-columns: 1fr 4fr 1fr;
       grid-template-columns: 1fr 4fr 1fr;
 }
 
 .choice__image {
-  background-color: #ddd;
+  background-color: #dddddd;
+}
+
+.choice__title {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin: 0 0 .25rem;
+}
+
+.choice__text {
+  margin: 1rem 0 0.5rem;
 }
 
 .choice__body {
   padding-left: 1rem;
+}
+
+.email__form-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.email__input {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  font-size: 1.25rem;
+  color: #323233;
+  border: 1px solid #b1b1b3;
+  border-radius: 5px;
+}
+
+.email__input::-webkit-input-placeholder {
+  color: #b1b1b3;
+}
+
+.email__input:-ms-input-placeholder {
+  color: #b1b1b3;
+}
+
+.email__input::-ms-input-placeholder {
+  color: #b1b1b3;
+}
+
+.email__input::placeholder {
+  color: #b1b1b3;
+}
+
+.email__text {
+  font-size: 0.75rem;
+}
+
+.btn {
+  text-transform: uppercase;
+  background-color: #4292F4;
+  color: white;
+  padding: 1rem;
+  font-size: 1.25rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0.75rem 0 1rem;
 }
 /*# sourceMappingURL=style.css.map */
