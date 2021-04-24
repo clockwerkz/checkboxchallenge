@@ -43,10 +43,10 @@ function displayChoice({ title, description, selected, idx}) {
                 <div class="choice__title">${title}</div>
                 <p class="choice__text">${description}</p>
             </div> <!-- choice__body -->
-            <div class="choice__wrapper">
-                <input type="checkbox" id="checkbox-${idx}"${selected ? "checked": ""} data-index=${idx} class="choice__checkbox"/>
-                <span class="choice__checkbox--overlay"></span>
-            </div> 
+            <label class="choice__wrapper">
+                <input type="checkbox"  data-index="${idx}" class="choice__checkbox"/>
+                <span class="choice__checkbox--custom" tabindex="0"></span>
+            </label> 
         </li>
     `;
 }

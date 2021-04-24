@@ -86,20 +86,39 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
     }
     &__checkbox {
+        opacity: 0; 
+        cursor: pointer;
         position: absolute;
-        opacity: 0;
-        &--overlay {
-            display: block;
+        &--custom {
+            position: relative;
             content: '';
             width: 50px;
             height: 50px;
             border-radius: 50%;
             background-color: $gray;
+            border: 3px solid transparent;   
+            &:after {
+                position: absolute;
+                content: "";
+                left: 16px;
+                top: 10px;
+                height: 15px;
+                width: 8px;
+                border-radius: 0px;
+                border: solid  dodgerblue;
+                border-width: 0 3px 3px 0;
+                transform: rotate(45deg);
+                opacity: 0;
+            }
         }
-        &:checked ~ .choice__checkbox--overlay {
-            background-color: $blue;
+        &:checked ~ .choice__checkbox--custom {
+            border-color: dodgerblue;
+        }
+        &:checked ~ .choice__checkbox--custom:after {
+            opacity: 1;
         }
     }
 }
