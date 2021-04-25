@@ -19,7 +19,7 @@ body {
 }
 
 #app {
-  padding-top: 2rem;
+  padding-top: 0.5rem;
 }
 
 .option__selection input[type="checkbox"] {
@@ -147,6 +147,61 @@ body {
   opacity: 1;
 }
 
+.loading {
+  background-color: #fdfdfd;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loading.hide {
+  display: none;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  /* Light grey */
+  border-top: 8px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .submission {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -169,7 +224,7 @@ body {
   text-align: center;
 }
 
-.submission__choice {
+.submission__option {
   color: #b1b1b3;
 }
 
@@ -213,6 +268,13 @@ body {
           flex-direction: column;
   width: 60%;
   margin: 0 auto;
+}
+
+.email__error {
+  margin: 0 0 .25rem 0;
+  font-size: 1rem;
+  height: 1rem;
+  color: #f07a7a;
 }
 
 .email__input {
@@ -272,31 +334,31 @@ body {
   .newsletters {
     width: 95%;
   }
-  .choice {
+  .option {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
-  .choice__body {
+  .option__body {
     padding: 0;
   }
-  .choice__body {
+  .option__body {
     width: 80%;
   }
-  .choice__wrapper {
+  .option__wrapper {
     width: 20%;
   }
-  .choice__image {
+  .option__image {
     display: none;
   }
-  .choice__checkbox {
+  .option__checkbox {
     -webkit-appearance: none;
        -moz-appearance: none;
             appearance: none;
   }
-  .choice__checkbox::after {
+  .option__checkbox::after {
     display: block;
     content: '';
     width: 30px;
