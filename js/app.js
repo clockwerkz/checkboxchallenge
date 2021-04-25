@@ -1,7 +1,7 @@
 let Model = {};
 
 document.addEventListener("DOMContentLoaded", async ()=> {
-    const choices = document.querySelector('.choices');  
+    const choices = document.querySelector('.options');  
     try {
         const res = await fetch('data.json');
         Model = await res.json();
@@ -37,15 +37,15 @@ function displaySubmissionStatus() {
 
 function displayChoice({ title, description, selected, idx}) {
     return `
-        <li class="choice">
-            <div class="choice__image"></div>
-            <div class="choice__body">
-                <div class="choice__title">${title}</div>
-                <p class="choice__text">${description}</p>
-            </div> <!-- choice__body -->
-            <label class="choice__wrapper">
-                <input type="checkbox"  data-index="${idx}" class="choice__checkbox"/>
-                <span class="choice__checkbox--custom" tabindex="0"></span>
+        <li class="option">
+            <div class="option__image"></div>
+            <div class="option__body">
+                <div class="option__title">${title}</div>
+                <p class="option__text">${description}</p>
+            </div> <!-- option__body -->
+            <label class="option__wrapper">
+                <input type="checkbox"  data-index="${idx}" class="option__checkbox"/>
+                <span class="option__checkbox--custom" tabindex="0"></span>
             </label> 
         </li>
     `;

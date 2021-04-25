@@ -58,11 +58,11 @@ body {
         display: none;
     }
 }
-.choices {
+.options {
     padding: 0 2rem;
     margin: 2rem 0;
 }
-.choice {
+.option {
     display: grid;
     margin: 1rem 0 2rem;
     grid-template-columns: 1fr 4fr 1fr;
@@ -114,10 +114,10 @@ body {
                 opacity: 0;
             }
         }
-        &:checked ~ .choice__checkbox--custom {
+        &:checked ~ .option__checkbox--custom {
             border-color: dodgerblue;
         }
-        &:checked ~ .choice__checkbox--custom:after {
+        &:checked ~ .option__checkbox--custom:after {
             opacity: 1;
         }
     }
