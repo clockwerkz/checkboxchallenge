@@ -1,6 +1,4 @@
 //TODO: move the error message to the top of the screen - when it errors out and returns back to the options list, the error message is lost.
-//TODO: Handle opt out functionality
-//TODO: Handle the anchor link to allow the user to return to their options and edit their choices or opt out
 
 let options = {};
 
@@ -14,6 +12,11 @@ document.addEventListener("DOMContentLoaded", async ()=> {
         console.log(err);
     }
 });
+
+document.getElementById("opt-out-link").addEventListener("click", ()=>{
+    displayOptions();
+});
+
 
 
 //Form Submission Handling
@@ -32,9 +35,12 @@ function fakeFetch() {
 document.querySelector(".email__form-control").addEventListener('submit', (e)=>{
     e.preventDefault();
     const optionsLI = document.querySelectorAll('.option__checkbox');
-    const hasOneSelection = [...optionsLI].reduce((acc, option)=> option.checked || acc ? true : acc, false);
-    if (!hasOneSelection) {
-        return displayOptions("Please select at least 1 newsletter option.")
+    const optOut = document.getElementById("opt-out");
+    if (!optOut.checked) {
+        const hasOneSelection = [...optionsLI].reduce((acc, option)=> option.checked || acc ? true : acc, false);
+        if (!hasOneSelection) {
+            return displayOptions("Please select at least 1 newsletter option.")
+        }
     }
     optionsLI.forEach(option => {
         if (option.checked) {
@@ -42,31 +48,33 @@ document.querySelector(".email__form-control").addEventListener('submit', (e)=>{
             options[index].checked = true;
         }
     })
-    displaySubmittingStatus();
+    displaySubmittingStatus(optOut.checked);
 })
 
 
 // Loading Screens
 
-function displaySubmittingStatus() {
+function displaySubmittingStatus(optOutChoice) {
     document.querySelector(".newsletters").classList.add("hide");
     document.querySelector(".loading").classList.remove("hide");
     fakeFetch()
     .then(res => {
-        displaySubmissionStatus();
+        displaySubmissionStatus(optOutChoice);
     })
     .catch(error => {
-        console.log(error);
         displayOptions("There was an error with submission, please try again.")
     })
 }
 
-function displaySubmissionStatus() {
+function displaySubmissionStatus(optOutChoice) {
     document.querySelector(".loading").classList.add("hide");
     document.querySelector(".submission").classList.remove("hide");
     const selections = document.querySelector(".submission__options");
+    if (optOutChoice) {
+        selections.innerHTML = `<li class="submission__option">You have opted out of receiving newsletter emails</li>`;
+        return;
+    }
     selections.innerHTML = options.filter(option => option.checked).map(option => `<li class="submission__option">${option.title}</li>`).join('');
-
 }
 
 
@@ -77,7 +85,9 @@ function displayOptions(error) {
         setError(error);
     }
     document.querySelector(".newsletters").classList.remove("hide");
+    document.querySelector(".submission").classList.add("hide");
     document.querySelector(".loading").classList.add("hide");
+    
     return options.map((option, idx) => displayOption({...option, idx})).join('');
 }
 

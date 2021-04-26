@@ -210,6 +210,7 @@ body {
   -webkit-box-shadow: 0px 0px 40px 10px #dddddd;
           box-shadow: 0px 0px 40px 10px #dddddd;
   width: 60%;
+  padding: 0 1rem;
   margin: 0 auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -238,6 +239,7 @@ body {
 
 .submission__text {
   margin-bottom: 0;
+  text-align: center;
 }
 
 .submission__options {
@@ -328,11 +330,17 @@ body {
   .newsletters {
     width: 80%;
   }
+  .submission {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .newsletters {
     width: 95%;
+  }
+  .options {
+    padding: 0 1rem;
   }
   .option {
     display: -webkit-box;
@@ -343,9 +351,14 @@ body {
   }
   .option__body {
     padding: 0;
-  }
-  .option__body {
     width: 80%;
+  }
+  .option__title {
+    font-size: 1rem;
+  }
+  .option__text {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
   }
   .option__wrapper {
     width: 20%;
@@ -366,8 +379,27 @@ body {
     border-radius: 50%;
     background-color: #dddddd;
   }
+  .option__checkbox--custom {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    border: 3px solid transparent;
+  }
+  .option__checkbox--custom:after {
+    left: 8px;
+    top: 4px;
+    height: 10px;
+    width: 6px;
+  }
   .email__form-control {
     width: 95%;
+  }
+  .submission {
+    width: 95%;
+  }
+  .submission__option {
+    text-align: center;
   }
 }
 /*# sourceMappingURL=style.css.map */
