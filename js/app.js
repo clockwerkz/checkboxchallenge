@@ -1,4 +1,5 @@
 let options = {};
+const PCT_SUCCESS = 80; //change this value to increase/decrease the percentage of a successful fetch request
 
 document.addEventListener("DOMContentLoaded", async ()=> {
     const optionsUL = document.querySelector('.options');  
@@ -22,7 +23,8 @@ document.getElementById("opt-out-link").addEventListener("click", ()=>{
 function fakeFetch() {
     return new Promise((resolve, reject)=>{
        setTimeout(()=>{
-           if (Math.random() < .80 ) {
+           const pct = parseInt(Math.random() * 100);
+           if (pct < PCT_SUCCESS) {
                 return resolve({msg: "Successfully submitted"});
            } 
            reject({error: "Server Error"})
@@ -98,7 +100,7 @@ function displayOption({ title, description, selected, idx}) {
                 <p class="option__text">${description}</p>
             </div> <!-- option__body -->
             <label class="option__wrapper">
-                <input type="checkbox"  data-index="${idx}" class="option__checkbox"/>
+                <input type="checkbox"  aria-label="${title}" data-index="${idx}" class="option__checkbox"/>
             <span class="option__checkbox--custom"  ></span>
             </label> 
         </li>
