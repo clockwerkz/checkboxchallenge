@@ -26,9 +26,6 @@ body {
     padding-top: 0.5rem;
 }
 .option {
-    &__selection input[type="checkbox"] {
-            visibility: none;
-        }
     &__checkbox {
         display: inline-block;
         content: "dasd";
