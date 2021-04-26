@@ -2,11 +2,11 @@ let options = {};
 const PCT_SUCCESS = 80; //change this value to increase/decrease the percentage of a successful fetch request
 
 document.addEventListener("DOMContentLoaded", async ()=> {
-    const optionsUL = document.querySelector('.options');  
+    
     try {
         const res = await fetch('data.json');
         options = await res.json();
-        optionsUL.innerHTML = displayOptions();
+        displayOptions();
     } catch (err){
         console.log(err);
     }
@@ -34,20 +34,19 @@ function fakeFetch() {
 
 document.querySelector(".email__form-control").addEventListener('submit', (e)=>{
     e.preventDefault();
+    console.log("form submit");
     const optionsLI = document.querySelectorAll('.option__checkbox');
     const optOut = document.getElementById("opt-out");
+    optionsLI.forEach(option => {
+        const index = option.dataset.index;
+        options[index].checked = option.checked ? true : false;
+    })
     if (!optOut.checked) {
         const hasOneSelection = [...optionsLI].reduce((acc, option)=> option.checked || acc ? true : acc, false);
         if (!hasOneSelection) {
             return displayOptions("Please select at least 1 newsletter option.")
         }
     }
-    optionsLI.forEach(option => {
-        if (option.checked) {
-            const index = option.dataset.index;
-            options[index].checked = true;
-        }
-    })
     displaySubmittingStatus(optOut.checked);
 })
 
@@ -87,11 +86,11 @@ function displayOptions(error) {
     document.querySelector(".newsletters").classList.remove("hide");
     document.querySelector(".submission").classList.add("hide");
     document.querySelector(".loading").classList.add("hide");
-    
-    return options.map((option, idx) => displayOption({...option, idx})).join('');
+    const optionsUL = document.querySelector('.options');  
+    optionsUL.innerHTML = options.map((option, idx) => displayOption({...option, idx})).join('');
 }
 
-function displayOption({ title, description, selected, idx}) {
+function displayOption({ title, description, checked, idx}) {
     return `
         <li class="option">
             <div class="option__image"></div>
@@ -100,7 +99,7 @@ function displayOption({ title, description, selected, idx}) {
                 <p class="option__text">${description}</p>
             </div> <!-- option__body -->
             <label class="option__wrapper">
-                <input type="checkbox"  aria-label="${title}" data-index="${idx}" class="option__checkbox"/>
+                <input type="checkbox"  aria-label="${title}" data-index="${idx}" class="option__checkbox" ${checked ? "checked" : ""}/>
             <span class="option__checkbox--custom"  ></span>
             </label> 
         </li>
