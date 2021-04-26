@@ -1,5 +1,3 @@
-//TODO: move the error message to the top of the screen - when it errors out and returns back to the options list, the error message is lost.
-
 let options = {};
 
 document.addEventListener("DOMContentLoaded", async ()=> {
